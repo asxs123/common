@@ -2019,6 +2019,7 @@ export PATHS2="- 'build/${FOLDER_NAME}/relevance/start'"
 if [[ -n "${PATHS1}" ]] && [[ -n "${TARGET1}" ]]; then
   sed -i "s?${PATHS1}?${PATHS2}?g" "${YML_PATH}"
   sed -i "s?${TARGET1}?${TARGET2}?g" "${YML_PATH}"
+  sed -i "s#https://raw.githubusercontent.com/281677160/common/main/custom/first.sh#https://raw.githubusercontent.com/asxs123/common/main/custom/first.sh#g" "${YML_PATH}"
 else
   echo "获取变量失败,请勿胡乱修改compile.yml文件"
   exit 1
