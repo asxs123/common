@@ -325,8 +325,16 @@ cat feeds.conf.default|awk '!/^#/'|awk '!/^$/'|awk '!a[$1" "$2]++{print}' >uniq.
 mv -f uniq.conf feeds.conf.default
 
 # 这里增加了源,要对应的删除/etc/opkg/distfeeds.conf插件源
+case "${SOURCE_CODE}" in
+iStoreOS)
+  sed -i '$a src-git danshui1 https://github.com/281677160/openwrt-package.git;Official' feeds.conf.default
+;;
+*)
+  sed -i '$a src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}' feeds.conf.default
+;;
+esac
 cat >>"feeds.conf.default" <<-EOF
-src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
+# src-git danshui1 https://github.com/281677160/openwrt-package.git;${SOURCE}
 src-git helloworld https://github.com/fw876/helloworld.git
 src-git passwall3 https://github.com/xiaorouji/openwrt-passwall-packages;main
 EOF
